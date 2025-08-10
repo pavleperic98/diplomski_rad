@@ -1,0 +1,38 @@
+# Maven / Gradle build folders
+/target/
+/build/
+
+# IDE fajlovi
+/.idea/
+/*.iml
+*.iws
+*.ipr
+
+# Eclipse
+/.classpath
+/.project
+/.settings/
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Java class files
+*.class
+
+# Temporary files
+*.tmp
+*.temp
+
+# Application properties files with sensitive info (ako koristiš)
+/src/main/resources/application.properties
+/src/main/resources/application.yml
+
+# Maven wrapper files (ako koristiš)
+/.mvn/wrapper/maven-wrapper.jar
