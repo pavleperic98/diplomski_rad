@@ -1,0 +1,32 @@
+# Maven / Gradle build output
+target/
+build/
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE folders and files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# Eclipse files
+.classpath
+.project
+.settings/
+
+# Java class files
+*.class
+
+# Temporary files
+*.tmp
+*.temp
+
+# Maven Wrapper files 
+.mvn/wrapper/maven-wrapper.jar
