@@ -2,6 +2,9 @@
 target/
 build/
 
+# Spring Boot
+src/main/resources/application.properties
+
 # Logs
 *.log
 

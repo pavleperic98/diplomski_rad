@@ -1,0 +1,8 @@
+spring.application.name=sportska_dvorana
+spring.datasource.url=jdbc:postgresql://localhost:5432/sportska_dvorana
+spring.datasource.username=USERNAME_HERE
+spring.datasource.password=PASSWORD_HERE
+jwt.secret=PUT_YOUR_SECRET_HERE
+jwt.expiration=86400000
+stripe.api.key=STRIPE_API_KEY
+stripe.webhook.secret=STRIPE_WEBHOOK_SECRET
