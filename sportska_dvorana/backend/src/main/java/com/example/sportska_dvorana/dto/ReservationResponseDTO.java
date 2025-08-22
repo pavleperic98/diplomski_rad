@@ -1,5 +1,7 @@
 package com.example.sportska_dvorana.dto;
 
+import java.math.BigDecimal;
+
 public class ReservationResponseDTO {
 
     private Long reservationId;
@@ -14,12 +16,11 @@ public class ReservationResponseDTO {
     private String userFullName;
 
     private String statusName;
-
-    private String paymentStatus;
  
     private String date;    
     private String timeFrom;  
     private String timeTo;
+    private BigDecimal finalPrice;
 
     // Getteri i setteri
 
@@ -87,14 +88,6 @@ public class ReservationResponseDTO {
         this.statusName = statusName;
     }
 
-    public String getPaymentStatus() {
-        return paymentStatus;
-    }
-
-    public void setPaymentStatus(String paymentStatus) {
-        this.paymentStatus = paymentStatus;
-    }
-
     public String getDate() {
         return date;
     }
@@ -117,5 +110,13 @@ public class ReservationResponseDTO {
 
     public void setTimeTo(String timeTo) {
         this.timeTo = timeTo;
+    }
+
+    public BigDecimal getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(BigDecimal finalPrice) {
+        this.finalPrice = finalPrice;
     }
 }

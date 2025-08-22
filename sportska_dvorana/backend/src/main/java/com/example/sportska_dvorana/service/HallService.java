@@ -91,11 +91,10 @@ public class HallService {
         hall.setDescription(dto.getDescription());
         hall.setPricePerHour(dto.getPricePerHour());
 
-        // Postavi sports ako su poslati sportIds (npr. na kreiranju ili update)
         if (dto.getSportIds() != null) {
             hall.setSports(new HashSet<>(sportRepository.findAllById(dto.getSportIds())));
         } else {
-            hall.setSports(new HashSet<>()); // ili null, zavisno od željene logike
+            hall.setSports(new HashSet<>()); 
         }
 
         return hall;

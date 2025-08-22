@@ -1,19 +1,21 @@
 package com.example.sportska_dvorana.controller;
 
+import com.example.sportska_dvorana.dto.ApiResponse;
+import com.example.sportska_dvorana.dto.PaymentDTO;
 import com.example.sportska_dvorana.model.Payment;
 import com.example.sportska_dvorana.service.PaymentService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
-
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/payment")
 @Tag(name = "Payment Controller")
 public class PaymentController {
+
     private final PaymentService paymentService;
 
     public PaymentController(PaymentService paymentService) {
@@ -21,20 +23,27 @@ public class PaymentController {
     }
 
     @GetMapping
-    public List<Payment> getAllPayments() {
+    public List<PaymentDTO> getAllPayments() {
         return paymentService.getAllPayments();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Payment> getPaymentById(@PathVariable Long id) {
-        return paymentService.getPaymentById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> getPaymentById(@PathVariable Long id) {
+        Optional<Payment> paymentOpt = paymentService.getPaymentById(id);
+
+        if (paymentOpt.isPresent()) {
+            return ResponseEntity.ok(paymentService.toDTO(paymentOpt.get()));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse("Payment not found"));
+        }
     }
 
     @PostMapping
-    public Payment createPayment(@RequestBody Payment payment) {
-        return paymentService.createPayment(payment);
+    public ResponseEntity<?> createPayment(@RequestBody PaymentDTO dto) {
+        Payment payment = paymentService.createPayment(dto);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(Map.of("message", "Payment created", "payment", paymentService.toDTO(payment)));
     }
 
     @PutMapping("/{id}")

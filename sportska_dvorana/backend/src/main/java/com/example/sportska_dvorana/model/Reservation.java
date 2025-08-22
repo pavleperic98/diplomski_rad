@@ -1,5 +1,6 @@
 package com.example.sportska_dvorana.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -27,16 +28,13 @@ public class Reservation extends BaseEntity {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "payment_id")
-    private Payment payment;
-
-    @ManyToOne
     @JoinColumn(name = "status_id")
     private Status status;
 
     private LocalDate date;
     private LocalTime timeFrom;
     private LocalTime timeTo;
+    private BigDecimal finalPrice;
 
     // Getteri i setteri
     public Long getReservationId() {
@@ -71,14 +69,6 @@ public class Reservation extends BaseEntity {
         this.user = user;
     }
 
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
-
     public Status getStatus() {
         return status;
     }
@@ -109,5 +99,13 @@ public class Reservation extends BaseEntity {
 
     public void setTimeTo(LocalTime timeTo) {
         this.timeTo = timeTo;
+    }
+
+    public BigDecimal getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(BigDecimal finalPrice) {
+        this.finalPrice = finalPrice;
     }
 }

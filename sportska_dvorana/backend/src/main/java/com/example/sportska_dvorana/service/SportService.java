@@ -1,7 +1,7 @@
 package com.example.sportska_dvorana.service;
 
+import com.example.sportska_dvorana.dto.HallBasicDTO;
 import com.example.sportska_dvorana.dto.SportDTO;
-import com.example.sportska_dvorana.model.Hall;
 import com.example.sportska_dvorana.model.Sport;
 import com.example.sportska_dvorana.repository.HallRepository;
 import com.example.sportska_dvorana.repository.SportRepository;
@@ -63,7 +63,12 @@ public class SportService {
 
         dto.setSportId(sport.getSportId());
         dto.setSport(sport.getSport());
-        dto.setHallIds(sport.getHalls().stream().map(Hall::getHallId).toList());
+        dto.setHalls(
+            sport.getHalls()
+                .stream()
+                .map(hall -> new HallBasicDTO(hall.getHallId(), hall.getName()))
+                .toList()
+        );
 
         return dto;
     }
@@ -76,7 +81,12 @@ public class SportService {
 
         sport.setSportId(dto.getSportId());
         sport.setSport(dto.getSport());
-        sport.setHalls(new HashSet<>(hallRepository.findAllById(dto.getHallIds())));
+        
+        if (dto.getHallIds() != null) {
+            sport.setHalls(new HashSet<>(hallRepository.findAllById(dto.getHallIds())));
+        } else {
+            sport.setHalls(new HashSet<>()); 
+        }
 
         return sport;
     }

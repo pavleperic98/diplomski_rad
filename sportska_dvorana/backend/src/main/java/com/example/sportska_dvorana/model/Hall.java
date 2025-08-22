@@ -5,6 +5,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "hall")
@@ -17,6 +18,8 @@ public class Hall extends BaseEntity {
 
     private String name;
     private int capacity;
+
+    @Size(max = 500)
     private String description;
     private Double pricePerHour;
 

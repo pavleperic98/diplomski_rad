@@ -14,6 +14,8 @@ public class SportDTO {
     @NotBlank(message = "Sport name is required")
     private String sport;
 
+    private List<HallBasicDTO> halls;
+
     private List<Long> hallIds;
 
 
@@ -39,5 +41,13 @@ public class SportDTO {
 
     public void setHallIds(List<Long> hallIds) {
         this.hallIds = hallIds;
+    }
+
+    public List<HallBasicDTO> getHalls() {
+        return halls;
+    }
+
+    public void setHalls(List<HallBasicDTO> halls) {
+        this.halls = halls;
     }
 }

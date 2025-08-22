@@ -1,28 +1,29 @@
-package com.example.sportska_dvorana.model;
-
-import jakarta.persistence.*;
+package com.example.sportska_dvorana.dto;
 
 import java.math.BigDecimal;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-@Entity
-@Table(name = "payment")
-public class Payment extends BaseEntity {
+public class PaymentDTO {
 
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "payment_id")
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long paymentId;
 
+    @Schema(example = "pi_3K...") 
     private String stripeId;
+
+    @Schema(example = "2000")
     private BigDecimal amount;
+
+    @Schema(example = "RSD")
     private String currency;
+
+    @Schema(example = "PAID")
     private String paymentStatus;
 
-    @OneToOne
-    @JoinColumn(name = "reservation_id", unique = true)
-    private Reservation reservation;
+    @Schema(example = "1")
+    private Long reservationId; 
 
+    // Getteri i setteri
     public Long getPaymentId() {
         return paymentId;
     }
@@ -63,12 +64,12 @@ public class Payment extends BaseEntity {
         this.paymentStatus = paymentStatus;
     }
 
-    public Reservation getReservation() {
-        return reservation;
+    public Long getReservationId() {
+        return reservationId;
     }
 
-    public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
+    public void setReservationId(Long reservationId) {
+        this.reservationId = reservationId;
     }
     
-}
+} 

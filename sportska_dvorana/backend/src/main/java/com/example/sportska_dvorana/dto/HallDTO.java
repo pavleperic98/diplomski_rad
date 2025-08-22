@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
+import jakarta.validation.constraints.Size;
 
 public class HallDTO {
 
@@ -22,6 +23,7 @@ public class HallDTO {
 
     @Null
     @Schema(example = "test description")
+    @Size(max = 500)
     private String description;
 
     @Schema(example = "1000")

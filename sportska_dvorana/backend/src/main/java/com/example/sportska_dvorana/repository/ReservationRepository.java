@@ -15,9 +15,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     List<Reservation> findByUser(User user);
     List<Reservation> findBySport(Sport sport);
     List<Reservation> findByHall(Hall hall);
-    List<Reservation> findByStatus(Status status);
-
-
-    // nova metoda za rezervacije po sale i datumu
     List<Reservation> findByHallHallIdAndDate(Long hallId, LocalDate date);
+    List<Reservation> findByStatus(Status status);
+    
 }

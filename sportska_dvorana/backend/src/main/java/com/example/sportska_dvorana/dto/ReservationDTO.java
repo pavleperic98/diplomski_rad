@@ -1,5 +1,6 @@
 package com.example.sportska_dvorana.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -20,9 +21,6 @@ public class ReservationDTO {
     private Long userId;
 
     @Schema(example = "1")
-    private Long paymentId;
-
-    @Schema(example = "1")
     private Long statusId;
 
     @Schema(example = "2025-08-04")
@@ -33,6 +31,9 @@ public class ReservationDTO {
 
     @Schema(example = "12:00")
     private LocalTime timeTo;
+
+    @Schema(example = "2000")
+    private BigDecimal finalPrice;
 
 
     // Getteri i setteri
@@ -68,14 +69,6 @@ public class ReservationDTO {
         this.userId = userId;
     }
 
-    public Long getPaymentId() {
-        return paymentId;
-    }
-
-    public void setPaymentId(Long paymentId) {
-        this.paymentId = paymentId;
-    }
-
     public Long getStatusId() {
         return statusId;
     }
@@ -107,5 +100,12 @@ public class ReservationDTO {
     public void setTimeTo(LocalTime timeTo) {
         this.timeTo = timeTo;
     }
-    
+
+    public BigDecimal getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(BigDecimal finalPrice) {
+        this.finalPrice = finalPrice;
+    }
 }
