@@ -1,0 +1,49 @@
+<div class="table-container">
+  <div class="table-header">
+    <h2 class="table-title">{{ title }}</h2>
+    <button mat-button class="add-btn" (click)="addItem()">
+      <mat-icon>add</mat-icon>
+      Dodaj
+    </button>
+  </div>
+
+  <input
+    matInput
+    class="search-input"
+    (keyup)="applyFilter($event)"
+    placeholder="Pretraga"
+  />
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2 custom-table">
+    <ng-container *ngFor="let col of columns" [matColumnDef]="col.key">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ col.label }} </th>
+      <td mat-cell *matCellDef="let element" [ngClass]="col.key">
+        <ng-container *ngIf="col.key === 'status' || col.key === 'statusName'; else defaultCell">
+          <div class="status-badge" [ngClass]="element[col.key]">
+            {{ element[col.key] }}
+          </div>
+        </ng-container>
+        <ng-template #defaultCell>
+          {{ getDisplayValue(element, col.key) }}
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Akcije</th>
+      <td mat-cell *matCellDef="let element" >
+        <button mat-icon-button class="edit-btn" (click)="editItem(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button class="delete-btn" color="warn" (click)="deleteItem(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons class="paginator-bar"></mat-paginator>
+</div>

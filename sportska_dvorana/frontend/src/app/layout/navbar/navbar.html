@@ -1,0 +1,25 @@
+<mat-toolbar class="navbar">
+  <img src="/assets/spens-logo-orange.png" alt="Spens Logo" class="logo" />
+  
+  <div class="nav-links">
+    <button mat-button routerLink="/welcome" class="nav-link">
+      <mat-icon>house</mat-icon>
+      Pocetna strana
+    </button>
+    <button mat-button routerLink="/halls" class="nav-link">
+      <mat-icon>room</mat-icon>
+      Sve sale
+    </button>
+    <button mat-button  routerLink="/reservations" class="nav-link">
+      <mat-icon>bookmark</mat-icon>
+      Moje rezervacije
+    </button>
+  </div>
+  
+  <div class="spacer"></div>
+  
+  <button mat-raised-button class="logout-btn" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    Logout
+  </button>
+</mat-toolbar>

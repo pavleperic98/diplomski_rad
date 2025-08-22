@@ -1,0 +1,82 @@
+.dashboard-container {
+  height: 100vh;
+  background-color: var(--mat-sys-primary);
+}
+
+.sidenav {
+  width: 250px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  padding-top: 1.5rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.sidenav-title {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #ff8c00;
+  font-size: 1.5rem;
+  padding: 0 1rem; /* Added padding to prevent text overflow */
+  word-wrap: break-word; /* Ensure text wraps properly */
+}
+
+mat-nav-list {
+  width: 100%;
+  overflow: hidden; /* Prevent any overflow */
+}
+
+mat-nav-list a {
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s ease;
+  margin: 0.5rem 1rem;
+  border-radius: 8px;
+  width: calc(100% - 2rem); /* Ensure links don't exceed container width */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+mat-nav-list a:hover {
+  background-color: rgba(255, 140, 0, 0.2);
+  transform: translateX(5px);
+}
+
+mat-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.8rem 1rem;
+  width: 100%;
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+mat-list-item mat-icon {
+  color: #ff8c00;
+  flex-shrink: 0; /* Prevent icons from shrinking */
+}
+
+mat-list-item span {
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+}
+
+.content {
+  padding: 2rem;
+  background: var(--mat-sys-primary);
+  height: 100%;
+  overflow: auto;
+}
+
+.placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.5rem;
+}

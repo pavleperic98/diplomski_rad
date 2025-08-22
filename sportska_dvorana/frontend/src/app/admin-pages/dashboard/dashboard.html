@@ -1,0 +1,32 @@
+<mat-sidenav-container class="dashboard-container">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <h2 class="sidenav-title">Admin Panel</h2>
+    
+    <mat-nav-list>
+      <a mat-list-item class="sidenav-item" *ngFor="let section of sections" (click)="selectSection(section)">
+        <mat-icon>{{ section.icon || 'folder' }}</mat-icon>
+        <span>{{ section.label }}</span>
+      </a>
+
+      <!-- Logout link sa istim stilom -->
+      <a mat-list-item class="sidenav-item" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <ng-container *ngIf="selectedSection">
+      <app-admin-table
+        [title]="selectedSection.label"
+        [apiEndpoint]="selectedSection.apiEndpoint"
+        [columns]="selectedSection.columns">
+      </app-admin-table>
+    </ng-container>
+    <div *ngIf="!selectedSection" class="placeholder">
+      <p>Izaberite sekciju sa leve strane.</p>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

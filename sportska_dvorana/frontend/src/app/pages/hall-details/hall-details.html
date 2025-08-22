@@ -1,0 +1,138 @@
+<div class="hall-details-container" *ngIf="hall">
+  <h1 class="page-title">{{ hall.name }}</h1>
+  <p class="page-subtitle">Popunjavanjem desne forme rezerviši željeni termin</p>
+
+  <!-- Back button -->
+  <button color="primary" class="back-button" (click)="goBack()">
+    <span class="arrow">&#10094;</span>
+    <span class="text">Vrati se na prikaz svih sala</span>
+  </button>
+
+  <!-- Main Content -->
+  <div class="hall-content">
+    <!-- Hall Info Section -->
+    <div class="hall-info">
+      <mat-card class="info-card">
+        <!-- Sport images carousel -->
+        <div class="sport-carousel" *ngIf="hall.images?.length">
+          <button class="carousel-btn left" (click)="prevImage()">&#10094;</button>
+          <img 
+              *ngIf="hall?.images?.length" 
+              [src]="hall.images[currentImageIndex]" 
+              [alt]="getSelectedSportName()" 
+              class="carousel-image" 
+            />
+          <button class="carousel-btn right" (click)="nextImage()">&#10095;</button>
+        </div>
+
+        <div class="info-section">
+          <h2>Opšte informacije:</h2>
+          <p>Naziv: {{ hall.name }}</p>
+          <p>{{ hall.description || 'No description available' }}</p>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="info-section">
+          <h2>Namenjena za:</h2>
+          <div class="sports-list">
+            <div *ngFor="let sport of hall.sports; let i = index" class="sport-item">
+              <mat-icon>{{ hall.sportIcons[i] }}</mat-icon>
+              <span>{{ sport.sport }}</span> 
+            </div>
+          </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="info-section pricing">
+          <h2>Uslovi:</h2>
+          <div class="price-item">
+            <mat-icon>people</mat-icon>
+            <span>Maksimalno {{ hall.capacity }} ljudi</span>
+          </div>
+          <div class="price-item">
+            <mat-icon>attach_money</mat-icon>
+            <span>Cena po satu: {{ hall.pricePerHour }} din.</span>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+    <!-- Booking Form -->
+    <div class="booking-section">
+      <mat-card class="booking-card">
+        <h2>Odaberi termin:</h2>
+        <h4>Polja obelezena zvezdicom su obavezna</h4>
+
+        <!-- Date Picker -->
+        <div class="date-picker">
+          <mat-form-field appearance="fill">
+            <mat-label>Izaberi datum</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" (dateChange)="dateChanged()" required/>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <!-- Time Selection -->
+        <div class="time-picker">
+          <h3>Izaberi vreme:</h3>
+          <div class="start-times">
+            <button
+              *ngFor="let time of getPossibleStartTimes()"
+              [disabled]="!isTimeSlotAvailable(time, selectedDuration)"
+              [class.selected]="time === selectedStartTime"
+              [class.available]="isTimeSlotAvailable(time, selectedDuration)"
+              [class.booked]="!isTimeSlotAvailable(time, selectedDuration)"
+              (click)="selectStartTime(time)"
+              mat-raised-button
+            >
+              {{ time }} - {{ getEndTime(time, selectedDuration) }}
+            </button>
+          </div>
+
+          <div class="form-row">
+            <!-- Duration -->
+            <mat-form-field appearance="fill">
+              <mat-label>Izaberi trajanje</mat-label>
+              <mat-select [(ngModel)]="selectedDuration" (selectionChange)="onDurationChange()" required>
+                <mat-option [value]="1">60 minuta</mat-option>
+                <mat-option [value]="2">120 minuta</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- Sport -->
+            <mat-form-field appearance="fill">
+              <mat-label>Izaberi sport</mat-label>
+              <mat-select [(ngModel)]="selectedSportId" required>
+                <mat-option *ngFor="let sport of sports" [value]="sport.sportId">
+                  {{ sport.sport }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <p *ngIf="selectedDate && selectedStartTime && selectedSportId" class="reservation-summary">
+            <span class="highlight-title">Rezervacija:</span> <br>
+            <strong>Datum:</strong> {{ selectedDate | date:'dd.MM.yyyy' }} <br>
+            <strong>Vreme:</strong> {{ selectedStartTime }} - {{ getCalculatedEndTime() }} <br>
+            <strong>Sport:</strong> {{ getSelectedSportName() }} <br>
+            <strong>Cena:</strong> {{ calculateTotalPrice() }} din.
+          </p>
+
+          <button
+            mat-raised-button
+            (click)="confirmReservation()"
+            [disabled]="!selectedStartTime || !selectedSportId || !isTimeSlotAvailable(selectedStartTime, selectedDuration)"
+          >
+            Potvrdi rezervaciju
+          </button>
+
+          <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+          <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

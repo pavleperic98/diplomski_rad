@@ -1,0 +1,37 @@
+<div class="modal-backdrop">
+  <div class="modal-content">
+    <h2>{{ title }}</h2>
+    <form [formGroup]="form" (ngSubmit)="onSave()">
+      <div *ngFor="let field of fields" class="form-group">
+        <!-- Sakrij ID polje samo kada dodajemo novi zapis -->
+        <ng-container *ngIf="!(field.key.toLowerCase().endsWith('id') && !isEditMode)">
+          <label [for]="field.key">{{ field.label }}</label>
+
+          <!-- date picker -->
+          <input *ngIf="field.key === 'birthDate'"
+                 type="date"
+                 [id]="field.key"
+                 formControlName="{{ field.key }}">
+
+          <!-- dropdown  -->
+          <select *ngIf="isSelectField(field)"
+                  [id]="field.key"
+                  formControlName="{{ field.key }}">
+            <option *ngFor="let option of field.options" [value]="option.name">{{ option.name }}</option>
+          </select>
+
+          <!-- default input -->
+          <input *ngIf="!(field.key === 'birthDate') && !isSelectField(field)"
+                 type="text"
+                 [id]="field.key"
+                 formControlName="{{ field.key }}">
+        </ng-container>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" mat-button (click)="onCancel()" class="cancel-btn">Cancel</button>
+        <button type="submit" mat-button [disabled]="form.invalid" class="save-btn">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

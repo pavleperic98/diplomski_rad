@@ -1,0 +1,183 @@
+@use '@angular/material' as mat;
+
+
+.reservations-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: var(--mat-sys-on-primary);
+
+  .page-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+
+  .page-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #ff8c00;
+  }
+
+  .no-reservations {
+    text-align: center;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin: 2rem 0;
+
+    mat-icon {
+      font-size: 3rem;
+      width: 3rem;
+      height: 3rem;
+      color: #ff8c00;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .reservation-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+
+    .reservation-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: var(--mat-sys-primary);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      color: white;
+      border-radius: 12px;
+      overflow: hidden;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      mat-card-header {
+        position: relative;
+        padding-bottom: 0;
+
+        .status-badge {
+          position: absolute;
+          top: 16px;
+          right: 16px;
+          padding: 4px 12px;
+          border-radius: 20px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          text-align: center;
+          min-width: 90px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          font-variation-settings: 'wght' 550;
+          color: white;
+          cursor: default;
+        }
+      }
+
+      mat-card-subtitle {
+        color: #ff8c00;
+        font-style: italic;
+        letter-spacing: 1px;
+      }
+
+      mat-card-content {
+        padding: 0 16px 16px;
+
+        .reservation-details {
+          display: flex;
+          flex-direction: column;
+          gap: 0.8rem;
+          margin-top: 1rem;
+
+          .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+
+            mat-icon {
+              color: #ff8c00;
+            }
+          }
+        }
+      }
+
+      mat-card-actions {
+        padding: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 0;
+
+        button {
+          margin-left: 8px;
+
+          mat-icon {
+            margin-right: 4px;
+          }
+        }
+      }
+    }
+
+    .kreirana {
+      .status-badge {
+        background-color: #0077ff;
+      }
+    }
+
+    .placena {
+      .status-badge {
+        background-color: #22a629;
+      }
+    }
+
+    .zavrsena {
+      .status-badge {
+        background-color: #5e5e5e; 
+      }
+    }
+
+    .otkazana {
+      .status-badge {
+        background-color: #C62828;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .reservations-container {
+    padding: 1.5rem 1rem;
+
+    .page-title {
+      font-size: 2rem;
+    }
+
+    .page-subtitle {
+      font-size: 1rem;
+    }
+
+    .reservation-cards {
+      grid-template-columns: 1fr;
+
+      .reservation-card {
+        mat-card-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+
+          button {
+            margin-left: 0;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

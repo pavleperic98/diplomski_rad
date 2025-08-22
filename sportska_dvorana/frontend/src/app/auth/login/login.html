@@ -1,0 +1,40 @@
+<div class="login-wrapper">
+  <div class="left">
+    <div class="left-content">
+      <h1>Dobrodošli nazad</h1>
+      <p>Uloguj se i rezerviši termin za svoj omiljeni sport!</p> 
+      <img src="assets/sports.jpg" alt="Sports" class="sports-image">
+    </div>
+  </div>
+  <div class="right">
+    <div class="right-content">
+      <mat-card>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-row">
+          <h2>Login</h2>
+          
+          <mat-form-field appearance="fill" class="full">
+            <mat-label>Email</mat-label>
+            <input matNativeControl formControlName="email" type="email" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="half-width">
+            <mat-label>Lozinka</mat-label>
+            <input matNativeControl formControlName="password" type="password" required>
+          </mat-form-field>
+
+          <div class="error-message" [class.hidden]="!errorMessage">
+            <mat-icon color="warn">error</mat-icon>
+            <span>{{ errorMessage || ' ' }}</span>
+          </div>
+
+          <button mat-raised-button type="submit" class="orangeBtn">Uloguj se</button>
+        </form>
+
+        <p class="link">
+          Nemate nalog?
+          <a routerLink="/auth/register" class="textLink"> Registruj se ovde</a>
+        </p>
+      </mat-card>
+    </div>
+  </div>
+</div>

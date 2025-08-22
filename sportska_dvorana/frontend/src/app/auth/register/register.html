@@ -1,0 +1,77 @@
+<div class="register-wrapper">
+  <div class="left">
+    <div class="left-content">
+      <h1>Kreiranje naloga</h1>
+      <p>Registruj se i pronađi slobodne termine!</p>
+      <img src="assets/sports.jpg" alt="Sports" class="sports-image">
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="right-content">
+      <mat-card>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <h2>Registracija</h2>
+
+          <div class="form-row">
+            <mat-form-field appearance="fill" class="half-width">
+              <mat-label>Ime</mat-label>
+              <input matNativeControl formControlName="firstName" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="half-width">
+              <mat-label>Prezime</mat-label>
+              <input matNativeControl formControlName="lastName" required>
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="fill" class="full">
+            <mat-label>Username</mat-label>
+            <input matNativeControl formControlName="username" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full">
+            <mat-label>Email</mat-label>
+            <input matNativeControl formControlName="email" type="email" required>
+          </mat-form-field>
+
+          <div class="form-row">
+            <mat-form-field appearance="fill" class="half-width">
+              <mat-label>Broj telefona</mat-label>
+              <input matNativeControl formControlName="phoneNumber">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="half-width">
+              <mat-label>Datum rođenja</mat-label>
+              <input matNativeControl formControlName="birthDate" type="date">
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field appearance="fill" class="half-width">
+              <mat-label>Lozinka</mat-label>
+              <input matNativeControl formControlName="password" type="password" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="half-width">
+              <mat-label>Potvrda loznike</mat-label>
+              <input matNativeControl formControlName="confirmPassword" type="password" required>
+            </mat-form-field>
+          </div>
+
+          <div class="error-message" [class.hidden]="!errorMessage">
+            <mat-icon color="warn">error</mat-icon>
+            <span>{{ errorMessage || ' ' }}</span>
+          </div>
+
+          <button mat-raised-button type="submit" class="orangeBtn">Registruj se</button>
+        </form>
+
+        <p class="link">
+          Već ste naš korisnik?
+          <a routerLink="/auth/login" class="textLink"> Uloguj se ovde</a>
+        </p>
+      </mat-card>
+    </div>
+  </div>
+</div>

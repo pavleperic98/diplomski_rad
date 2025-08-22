@@ -1,0 +1,26 @@
+@use '@angular/material' as mat;
+
+h2[mat-dialog-title] {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+mat-dialog-content {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+mat-dialog-actions {
+  button {
+    min-width: 90px;
+  }
+}
+
+.confirm-btn {
+  background-color: var(--mat-sys-primary);
+  color: white;
+
+    &:hover {
+      background-color: #004b4c;
+  }
+}

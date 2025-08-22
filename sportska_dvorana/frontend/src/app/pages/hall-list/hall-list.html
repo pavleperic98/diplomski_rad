@@ -1,0 +1,48 @@
+<div class="hall-list-container">
+  <h1 class="page-title">Pronađi salu za željeni sport!</h1>
+  <p class="page-subtitle">Klikom na salu vidi pregled dostupnih termina</p>
+
+  <div class="filter-container">
+    <mat-form-field appearance="fill" class="search-field">
+      <mat-label>Pretraži sale</mat-label>
+      <input matInput placeholder="Ukucaj naziv sale ili naziv sporta" [(ngModel)]="searchQuery" (input)="applyFilters()">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="sport-filter">
+      <mat-label>Filtriraj po sportu</mat-label>
+      <mat-select [(value)]="selectedSport" (selectionChange)="applyFilters()">
+        <mat-option value="all">Svi sportovi</mat-option>
+        <mat-option *ngFor="let sport of sports" [value]="sport">
+          {{ sport }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="hall-cards">
+    <mat-card *ngFor="let hall of filteredHalls" class="hall-card" (click)="viewSlots(hall)">
+        <img mat-card-image [src]="hall.images[0]" alt="{{ hall.name }}" class="hall-img"/>
+      <mat-card-content>
+        <h2>{{ hall.name }}</h2>
+        <div class="hall-info">
+          <div class="info-item">
+            <div class="info-item sport-list">
+              <div *ngFor="let sport of hall.sports" class="sport-row">
+                <mat-icon>{{ getSportIcon(sport.sport) }}</mat-icon>
+              </div>
+            </div>
+          </div>
+          <div class="info-item">
+            <mat-icon>people</mat-icon>
+            <span>Kapacitet: {{ hall.capacity }} ljudi</span>
+          </div>
+          <div class="info-item">
+            <mat-icon>attach_money</mat-icon>
+            <span>{{ hall.pricePerHour }} din. po satu</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

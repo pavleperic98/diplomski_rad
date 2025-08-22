@@ -1,0 +1,152 @@
+@use '@angular/material' as mat;
+
+.table-container {
+  padding: 16px;
+
+    .status-badge {
+        padding: 0.3rem 0.8rem;
+        border-radius: 12px;
+        color: white;
+        background: #ff8c00;
+        font-weight: 500;
+        display: inline-block;
+        text-align: center;
+        min-width: 80px;
+      }
+
+      .kreirana {
+        background-color: #0077ff;
+      }
+
+      .placena {
+        background-color: #22a629;
+      }
+
+      .zavrsena {
+        background-color: #5e5e5e;
+      }
+
+      .otkazana {
+        background-color: #C62828;
+
+      .default {
+        color: black;
+      }
+  }
+}
+
+.search-input {
+  width: 50%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+  &:focus {
+    outline: 2px solid #ff8c00;
+  }
+}
+
+.paginator-bar {
+  background-color: #dbdbdbd4;
+}
+
+.table-title {
+  margin-bottom: 12px;
+  color: #ff8c00;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  background: #ff8c00;
+  font-size: 14px;
+  color: white !important;
+  gap: 6px;
+
+  &:hover {
+      background: #c96e00;
+    }
+}
+
+
+.custom-table {
+  width: 100%;
+  overflow: hidden;
+
+  th, td {
+    padding: 1rem;
+    text-align: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  th:last-child,
+  td:last-child {
+    border-right: none; 
+  }
+
+  th {
+    background-color: rgba(255, 140, 0, 0.8);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  td {
+    background: white;
+    color: black;
+  }
+
+  tr:hover td {
+    background-color: rgba(255, 140, 0, 0.1);
+  }
+
+  .mat-column-userId,
+  .mat-column-hallId,
+  .mat-column-sportId,
+  .mat-column-reservationId,
+  .mat-column-paymentId,
+  .mat-column-statusId,
+  .mat-column-roleId {
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .mat-column-stripeId {
+    max-width: 120px;
+    text-align: left;
+    font-weight: bold;
+    word-break: normal;
+  }
+
+  .mat-column-username,
+  .mat-column-birthDate,
+  .mat-column-phoneNumber {
+    max-width: 100px;
+    text-align: center;
+  }
+
+  .mat-column-status,
+  .mat-column-statusName {
+    align-items: center;
+  }
+
+  .mat-column-actions {
+    text-align: center;
+    max-width: 100px;
+
+    button {
+      margin: 0 4px;
+    }
+  }
+}

@@ -1,0 +1,88 @@
+@use '@angular/material' as mat;
+
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--mat-sys-on-primary);
+  text-align: center;
+  padding-top: 20vh; 
+}
+
+.welcome-content {
+  max-width: 700px; 
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem; 
+
+  .welcome-logo {
+      width: 500px; 
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+  h1 {
+    font-size: 2.5rem; 
+    font-weight: lighter; 
+    letter-spacing: 0.2cm;
+    line-height: 1.2;
+    margin: 0;
+    
+    .sports-icons {
+      display: inline-block;
+      margin-left: 0.5rem;
+    }
+  }
+
+  .subtitle {
+    font-size: 1.5rem; 
+    margin: 0;
+    color: #ff8c00;
+    font-weight: 400;
+    max-width: 80%;
+  }
+}
+
+.cta-button {
+  margin-top: 1rem;
+  padding: 1rem 2.5rem; 
+  font-size: 1.2rem; 
+  font-weight: 500;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  mat-icon {
+    margin-left: 0.5rem;
+    font-size: 1.5rem; 
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-container {
+    padding: 1.5rem;
+    padding-top: 15vh; 
+  }
+
+  .welcome-content {
+    h1 {
+      font-size: 2.5rem; 
+    }
+    
+    .subtitle {
+      font-size: 1.3rem;
+      max-width: 100%;
+      color: #ff8c00;
+    }
+  }
+
+  .cta-button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+}

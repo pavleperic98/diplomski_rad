@@ -1,0 +1,37 @@
+<div class="success-container">
+  <mat-card *ngIf="!loading && !error">
+    <mat-card-header>
+      <mat-card-title>Uspešno plaćanje!</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <div class="payment-details">
+        <p><strong>Broj rezervacije:</strong> {{ reservationId }}</p>
+        <p *ngIf="stripeDetails?.amount">
+          <strong>Iznos:</strong> {{ stripeDetails.amount | currency:'RSD ' }}
+        </p>
+        <p *ngIf="stripeDetails?.paymentDate">
+          <strong>Datum plaćanja:</strong> {{ stripeDetails.paymentDate | date:'medium' }}
+        </p>
+      </div>
+      
+      <div class="success-icon">
+        <mat-icon class="success">check_circle</mat-icon>
+      </div>
+    </mat-card-content>
+    
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="returnToReservations()">
+        Nazad na listu rezervacija
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-progress-spinner *ngIf="loading"></mat-progress-spinner>
+  
+  <div *ngIf="error" class="error-message">
+    <mat-icon class="error">error</mat-icon>
+    <p>{{ error }}</p>
+    <button mat-button (click)="returnToReservations()">Nazad</button>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="reservations-container">
+  <h1 class="page-title">Moje rezervacije</h1>
+  <p class="page-subtitle">Pregled svih vaših rezervacija i njihovog statusa</p>
+
+  <div *ngIf="reservations.length === 0" class="no-reservations">
+    <mat-icon>event_busy</mat-icon>
+    <p>Trenutno nemate nijednu rezervaciju</p>
+    <button mat-raised-button color="primary" routerLink="/halls">Pronađi salu</button>
+  </div>
+
+  <div class="reservation-cards">
+    <mat-card *ngFor="let reservation of reservations" class="reservation-card" [ngClass]="statusClass(reservation.statusName)">
+      <mat-card-header>
+        <mat-card-title>{{ reservation.hallName }}</mat-card-title>
+        <mat-card-subtitle>{{ reservation.sportName }}</mat-card-subtitle>
+        <span class="status-badge">{{ reservation.statusName }}</span>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="reservation-details">
+          <div class="detail-item">
+            <mat-icon>event</mat-icon>
+            <span>{{ reservation.date | date:'dd.MM.yyyy' }}</span>
+          </div>
+          <div class="detail-item">
+            <mat-icon>schedule</mat-icon>
+            <span>{{ reservation.timeFrom | slice:0:5 }} - {{ reservation.timeTo | slice:0:5 }}</span>
+          </div>
+          <div class="detail-item">
+            <mat-icon>payments</mat-icon>
+            <span>{{ reservation.finalPrice }} RSD</span>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button *ngIf="reservation.statusName === 'kreirana'"
+                mat-raised-button color="primary"
+                  (click)="goToCheckout(reservation)">
+            <mat-icon>payment</mat-icon>
+            Plati
+        </button>
+
+        <button *ngIf="reservation.statusName !== 'zavrsena' && reservation.statusName !== 'otkazana'"
+                mat-raised-button color="warn"
+                (click)="cancelReservation(reservation.reservationId)">
+          <mat-icon>cancel</mat-icon>
+          Otkaži
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,166 @@
+@use '@angular/material' as mat;
+
+.login-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background: var(--mat-sys-on-primary);
+
+  .left {
+    flex: 1;
+    display: flex;
+    padding: 2rem;
+    background-color: var(--mat-sys-primary);
+    color: var(--mat-sys-on-primary);
+
+    .left-content {
+      max-width: 500px;
+      margin: auto;
+
+      h1 {
+        font-size: 3rem;
+        font-weight: lighter; 
+        letter-spacing: 0.2cm;
+        margin-bottom: 3rem;
+        text-align: center;
+      }
+
+      p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        color:#ff8c00;
+      }
+
+      .sports-image {
+        max-width: 100%;
+        height: 350px;
+      }
+    }
+  }
+
+  .right {
+    flex: 1;
+    display: flex;
+    padding: 2rem;
+
+    .right-content {
+      margin: auto;
+      width: 100%;
+      max-width: 480px;
+
+      mat-card {
+        background-color: var(--mat-sys-primary);
+        color: white;
+        padding: 2.5rem;
+        border-radius: 12px;
+        text-align: center;
+        margin: 0;
+
+        .error-message {
+          max-height: 1rem; 
+          margin-bottom: 1rem; 
+          color: #bbff00;
+          font-size: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+
+          &.hidden {
+              visibility: hidden;  
+            }
+        }
+
+
+        h2 {
+          margin-bottom: 2rem;
+          text-align: center;
+          font-size: 2rem;
+        }
+
+        .form-row {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .link {
+
+          .textLink {
+            color: #ff8c00;
+            font-weight: 500;
+          }
+        }
+
+        .orangeBtn {
+          background-color: #ff8c00;
+          color: white;
+          width: 100%;
+
+          &:hover {
+            background-color: #d87802;
+          }
+        }  
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .login-wrapper {
+    flex-direction: column;
+    background-color: var(--mat-sys-primary);
+    align-items: center;
+    justify-content: center;
+
+    .left {
+      padding: 0;
+      text-align: center;
+      flex: none;
+      
+      .left-content {
+        padding: 1rem;
+        margin-bottom: 0;
+        max-width: 100%;
+        
+        h1 {
+          font-size: 2.5rem;
+          margin-bottom: 1rem;
+        }
+        
+        p {
+          font-size: 1.2rem;
+          margin-bottom: 1rem; 
+        }
+        
+        .sports-image {
+          display: none;
+        }
+      }
+    }
+    
+    .right {
+      padding: 0;
+      flex: none;
+      
+      .right-content {
+        max-width: 100%;
+        padding: 0;
+        
+        mat-card {
+          padding: 0 1.5rem;
+          border: none;
+          box-shadow: none;
+
+          h2 {
+            display: none;
+          }
+          
+          .full {
+            margin-bottom: 1rem;
+          }
+        }
+      }
+    } 
+  }
+}

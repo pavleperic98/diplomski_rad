@@ -1,0 +1,35 @@
+.success-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+
+  .payment-details {
+    margin: 1.5rem 0;
+    p {
+      margin: 0.5rem 0;
+    }
+  }
+
+  .success-icon {
+    text-align: center;
+    margin: 1.5rem 0;
+    
+    .success {
+      font-size: 4rem;
+      height: 4rem;
+      width: 4rem;
+      color: #4caf50;
+    }
+  }
+
+  .error-message {
+    text-align: center;
+    color: #f44336;
+    
+    .error {
+      font-size: 4rem;
+      height: 4rem;
+      width: 4rem;
+    }
+  }
+}
